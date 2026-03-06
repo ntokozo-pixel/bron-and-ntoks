@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08111f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>B&N</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+<div class="app-shell">
+  <div id="ambientGlow"></div>
+  <div id="heart-container"></div>
+  <div class="progress-bar" id="questionProgressBar" aria-hidden="true">
+    <div id="progress"></div>
+  </div>
+
+  <section class="screen active intro-screen" id="intro">
+    <div class="story-timer"><div id="storyTimerFill"></div></div>
+    <h1 class="intro-text">I made this little place for you.</h1>
+  </section>
+
+
+  <section class="screen event-screen" id="birthdayScreen">
+    <div class="event-copy">
+      <p class="eyebrow">December 6</p>
+      <h1 class="screen-title">Happy Birthday, Bronwyn</h1>
+      <p class="screen-copy">My beautiful girl, happy birthday. I hope today wraps around you softly and reminds you how loved you are. Thank you for your smile, your warmth, your weirdness, and the way you make ordinary moments feel special. I hope this year is gentle with your heart, loud with your laughter, and full of the kind of love that feels safe, steady, and real. I am grateful for you, and I will keep choosing you with intention. Love, your boyfriend.</p>
+    </div>
+  </section>
+
+  <section class="screen event-screen" id="anniversaryPoem">
+    <div class="event-copy poem-copy">
+      <p class="eyebrow">Anniversary poem</p>
+      <h1 class="screen-title">For You</h1>
+      <p class="poem-line">Shall I compare thee to a summer’s day?</p>
+      <p class="poem-line">Thou art more lovely and more temperate.</p>
+    </div>
+  </section>
+
+  <section class="screen event-screen" id="secretMeeting">
+    <div class="event-copy">
+      <p class="secret-note">MEET ME AT THE SASOL LIBRARY, AT 22:00, ON ANY GIVEN SATURDAY.<br>— your boyfriend</p>
+      <button class="primary-btn" id="closeSecretMeeting" type="button">Back</button>
+    </div>
+  </section>
+
+  <section class="screen event-screen" id="threeDayStreak">
+    <div class="event-copy">
+      <h1 class="screen-title">Perfect Streak</h1>
+      <p class="screen-copy">3 days in a row.<br>You're a weirdo bronnie.</p>
+      <button class="primary-btn" id="closeThreeDayStreak" type="button">Continue</button>
+    </div>
+  </section>
+
+  <section class="screen event-screen" id="sevenDayStreak">
+    <div class="event-copy">
+      <h1 class="screen-title">Perfect Streak</h1>
+      <p class="screen-copy">7 days.<br>At this point, you're a stalker.</p>
+      <button class="primary-btn" id="closeSevenDayStreak" type="button">Continue</button>
+    </div>
+  </section>
+  <section class="screen event-screen" id="jealousMode">
+    <div class="event-copy">
+      <h1 class="screen-title">Jealous Mode</h1>
+      <p class="screen-copy">lmao ,lebron,what am i doing wrong?</p>
+      <button class="primary-btn" id="closeJealousMode" type="button">Continue</button>
+    </div>
+  </section>
+
+  <section class="screen event-screen secret-access-screen" id="secretTapScreen">
+    <div class="event-copy">
+      <p class="screen-copy">Unauthorized access detected. Identity confirmed: My girlfriend. Access granted.</p>
+      <button class="primary-btn" id="closeSecretTapScreen" type="button">Continue</button>
+    </div>
+  </section>
+
+  <section class="screen event-screen" id="nightModeScreen">
+    <div class="event-copy">
+      <p class="screen-copy">Why are you awake… thinking about me again?you do know you can text me right?</p>
+    </div>
+  </section>
+
+  <section class="screen event-screen glitch-screen" id="midnightGlitchScreen">
+    <div class="event-copy">
+      <p class="screen-copy">even if you call this late ,i will pick up for you lebron.</p>
+    </div>
+  </section>
+
+  <section class="screen event-screen" id="eggHintScreen">
+    <div class="event-copy">
+      <p class="eyebrow" id="eggHintLabel">Hidden hint</p>
+      <h1 class="screen-title">New Easter Egg</h1>
+      <p class="screen-copy" id="eggHintText">Keep checking in.</p>
+      <button class="primary-btn" id="closeEggHint" type="button">Continue</button>
+    </div>
+  </section>
+  <section class="screen" id="app">
+    <div class="topbar">
+      <div>
+        <p class="eyebrow" id="dayLabel">Day 1 of 30</p>
+        <h1 class="screen-title">Daily check-in</h1>
+      </div>
+      <button id="skipBtn" class="ghost-btn" type="button">Skip</button>
+    </div>
+    <div class="status-strip">
+      <div class="status-card"><span class="status-label">Streak</span><strong id="streakDisplay">0 days</strong></div>
+      <div class="status-card"><span class="status-label">Theme</span><strong id="themeDisplay">Warm start</strong></div>
+      <div class="status-card"><span class="status-label">Question</span><strong id="questionCount">1 / 5</strong></div>
+    </div>
+    <div class="question-card">
+      <p class="question-tag" id="questionTag">Today</p>
+      <h2 id="questionText">Loading today's question...</h2>
+      <p class="question-hint" id="questionHint">Choose the option that fits best.</p>
+      <div class="answers" id="answers"></div>
+    </div>
+    <button id="openHubFromApp" class="text-btn" type="button">Open memories and extras</button>
+  </section>
+
+  <section class="screen" id="analysis">
+    <p class="eyebrow">Daily read</p>
+    <h1 class="screen-title">Reading the vibe</h1>
+    <p id="analysis-text">Checking today's energy...</p>
+    <div class="loader" aria-hidden="true"></div>
+  </section>
+
+  <section class="screen" id="result">
+    <p class="eyebrow">Today's result</p>
+    <h1 class="screen-title">score</h1>
+    <div class="score-ring"><span id="vibeScore">0%</span></div>
+    <p class="vibe-emoji" id="vibeEmoji">Soft smiles</p>
+    <p class="vibe-message" id="vibeMessage">You and Ntokozo feel easy today.</p>
+    <div class="summary-pills" id="summaryPills"></div>
+    <button id="finalYes" class="primary-btn" type="button">Continue</button>
+  </section>
+
+  <section class="screen" id="extraContent">
+    <div class="hub-header">
+      <div>
+        <p class="eyebrow">Relationship space</p>
+        <h1 class="screen-title">Memories</h1>
+      </div>
+      <div class="hub-actions">
+        <button id="profileBtn" class="menu-btn icon-btn" type="button" aria-label="Open profile"><i class="fas fa-user"></i></button>
+        <button id="memOptionsBtn" class="menu-btn" type="button" aria-label="Open menu">Menu</button>
+      </div>
+    </div>
+    <div class="memories-top-row">
+      <button id="logoBadge" class="logo-badge logo-card" type="button" aria-label="App logo">
+        <img src="b and n logo.jpg" alt="B and N logo" class="logo-image">
+      </button>
+
+      <div class="stories-strip">
+        <button class="story-chip story-proof" id="bronwynStoryBtn" type="button">
+          <span class="story-avatar" id="bronwynStoryAvatar"><span class="story-initial">B</span><span class="story-plus">+</span></span>
+          <span class="story-label">Bronwyn</span>
+        </button>
+        <button class="story-chip story-proof" id="ntokozoStoryBtn" type="button">
+          <span class="story-avatar" id="ntokozoStoryAvatar"><span class="story-initial">N</span><span class="story-plus">+</span></span>
+          <span class="story-label">Ntokozo</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="memOverlay"></div>
+    <div id="memOptionsPanel" class="mem-panel">
+      <p class="eyebrow">Quick menu</p>
+      <button class="mem-option" id="vibeHistoryBtn" type="button">Score history</button>
+      <button class="mem-option" id="statsBtn" type="button">Stats</button>
+      <button class="mem-option" id="memoriesBtn" type="button">Memories hub</button>
+    </div>
+    <div class="memory-grid">
+      <article class="memory-feature">
+        <p class="eyebrow">Photo wall</p>
+        <h2>Our moments together</h2>
+        <p>Add your own pictures and videos.</p>
+        <input id="memoryUpload" class="hidden-input" type="file" accept="image/*,video/*">
+        <div id="memoryGallery" class="memory-gallery"></div>
+      </article>
+
+      <article class="note-card">
+        <p class="eyebrow">Playlist</p>
+        <h2>Apple Music picks</h2>
+        <div class="playlist-links" id="playlistLinks">
+          <a href="https://music.apple.com/us/playlist/rap-life/pl.abe8ba42278f4ef490e3a9fc5ec8e8c5">Rap Life</a>
+          <a href="https://music.apple.com/us/playlist/hip-hop-hits/pl.87c7af5767764860a0e3368d0bef9a6f">Hip-Hop Hits</a>
+          <a href="https://music.apple.com/us/playlist/2010s-hip-hop-essentials/pl.af758ba03e6d44548184717eebb38f9b">2010s Hip-Hop Essentials</a>
+          <a href="https://music.apple.com/za/playlist/gangbanging-drake/pl.u-6mo4lEZt80gk339">Gangbanging Drake</a>
+        </div>
+        <form id="playlistForm" class="playlist-form">
+          <input id="playlistName" type="text" placeholder="Playlist name" maxlength="40">
+          <input id="playlistUrl" type="url" placeholder="Apple Music or playlist link">
+          <button class="primary-btn" type="submit">Add playlist</button>
+        </form>
+        <div id="customPlaylistList" class="custom-playlists"></div>
+      </article>
+
+      <article class="note-card">
+        <p class="eyebrow">Little reminders</p>
+        <h2>Bronwyn's reminders</h2>
+        <p id="reminderStatus">Cute reminder messages live here.</p>
+        <button id="reminderPermissionBtn" class="secondary-btn" type="button">Enable reminders</button>
+      </article>
+    </div>
+  </section>
+
+  <section class="screen" id="profile">
+    <p class="eyebrow">User profile</p>
+    <h1 class="screen-title">Bronwyn</h1>
+    <div class="profile-card">
+      <div class="profile-avatar-lg"><i class="fas fa-user"></i></div>
+      <p class="screen-copy">Quick safety shortcuts live here.</p>
+      <a class="primary-btn sos-link" href="tel:0608793239" id="callNtokozoBtn">SOS call Ntokozo</a>
+      <p class="history-meta">If the phone shakes while the app is open, a large SOS call button will appear.</p>
+    </div>
+    <button class="secondary-btn" id="backFromProfile" type="button">Back</button>
+  </section>
+
+  <section class="screen story-viewer-screen" id="proofLife">
+    <div class="story-viewer-shell" id="storyViewerShell">
+      <div class="story-timer story-viewer-timer"><div id="proofStoryTimerFill"></div></div>
+      <img id="proofStoryPreview" class="proof-story-preview" alt="Proof of life story preview">
+      <div id="proofStoryEmpty" class="story-empty-state">
+        <span>No story is live yet.</span>
+        <button id="proofEmptyAddBtn" class="story-empty-add" type="button" aria-label="Add story"><i class="fas fa-plus"></i></button>
+      </div>
+    </div>
+    <input id="proofUpload" class="hidden-input" type="file" accept="image/*" capture="user">
+  </section>
+
+  <section class="screen" id="history">
+    <p class="eyebrow">Relationship stats</p>
+    <h1 class="screen-title">Vibe history</h1>
+    <p class="screen-copy">A simple record of how each check-in felt.</p>
+    <div id="historyList" class="history-list"></div>
+    <button class="secondary-btn" id="backFromHistory" type="button">Back</button>
+  </section>
+
+  <section class="screen" id="stats">
+    <p class="eyebrow">App stats</p>
+    <h1 class="screen-title">Stats</h1>
+    <div class="stats-grid" id="statsGrid"></div>
+    <div class="chart-card">
+      <p class="eyebrow">Score graph</p>
+      <div id="statsChart" class="stats-chart"></div>
+    </div>
+    <button class="secondary-btn" id="backFromStats" type="button">Back</button>
+  </section>
+
+  <section class="screen easter-screen" id="easterEgg">
+    <div class="ios-player-shell">
+      <button id="easterContinue" class="ios-player-back" type="button" aria-label="Back to memories"><i class="fas fa-chevron-left"></i></button>
+      <div class="ios-player-card">
+        <p class="eyebrow">Now Playing</p>
+        <img src="b and n logo.jpg" alt="Album cover" class="ios-album-art">
+        <div class="ios-song-meta">
+          <h2>Valentine</h2>
+          <p>Ntokozo</p>
+        </div>
+        <div class="ios-track-bar"><div id="secretTrackFill" class="ios-track-fill"></div></div>
+        <div class="ios-player-controls">
+          <button id="secretPrevBtn" class="ios-control-btn" type="button" aria-label="Back 10 seconds"><i class="fas fa-backward"></i></button>
+          <button id="secretPlayBtn" class="ios-control-btn ios-control-main" type="button" aria-label="Play or pause"><i class="fas fa-play"></i></button>
+          <button id="secretNextBtn" class="ios-control-btn" type="button" aria-label="Forward 10 seconds"><i class="fas fa-forward"></i></button>
+        </div>
+        <audio id="secretAudio"><source src="valentine final mix.mp3" type="audio/mpeg"></audio>
+      </div>
+      <div id="secretLoveNote" class="secret-love-note">
+        <p class="secret-note">I'm sorry i missed our valentines bronnie</p>
+        <button id="closeSecretLoveNote" class="secondary-btn" type="button">Back</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="memoryViewer" class="memory-viewer-overlay">
+    <button id="closeMemoryViewer" class="memory-viewer-close" type="button" aria-label="Close memory viewer"><i class="fas fa-xmark"></i></button>
+    <div id="memoryViewerContent" class="memory-viewer-content"></div>
+  </div>
+  <div id="shakeSosOverlay" class="shake-sos-overlay">
+    <div class="shake-sos-card">
+      <p class="eyebrow">Shake detected</p>
+      <h2>SOS call Ntokozo</h2>
+      <a class="primary-btn shake-call-btn" href="tel:0608793239" id="shakeCallBtn">Call 0608793239</a>
+      <button class="secondary-btn" id="closeShakeSos" type="button">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
