@@ -176,6 +176,7 @@
       <p class="eyebrow">Quick menu</p>
       <button class="mem-option" id="vibeHistoryBtn" type="button">Score history</button>
       <button class="mem-option" id="statsBtn" type="button">Stats</button>
+      <button class="mem-option" id="gamesHubBtn" type="button">Mini games</button>
       <button class="mem-option" id="memoriesBtn" type="button">Memories hub</button>
     </div>
     <div class="memory-grid">
@@ -184,7 +185,7 @@
             <div>
               <p class="eyebrow">Photo wall</p>
               <h2>Our moments together</h2>
-              <p>Swipe left or right through everything, then add your own pictures and videos at the end.</p>
+              
             </div>
             <button id="memoryGalleryOpen" class="secondary-btn memory-gallery-open" type="button">Gallery</button>
           </div>
@@ -214,13 +215,18 @@
         </form>
         <div id="customPlaylistList" class="custom-playlists"></div>
       </article>
+    </div>
+  </section>
 
-      <article class="note-card">
-        <p class="eyebrow">Little reminders</p>
-        <h2>Bronwyn's reminders</h2>
-        <p id="reminderStatus">Cute reminder messages live here.</p>
-        <button id="reminderPermissionBtn" class="secondary-btn" type="button">Enable reminders</button>
-      </article>
+  <section class="screen event-screen" id="notificationPrompt">
+    <div class="event-copy">
+      <p class="eyebrow">Notifications</p>
+      <h1 class="screen-title">Stay in the loop</h1>
+      <p class="screen-copy">Allow notifications for cute daily reminders.</p>
+      <div class="prompt-actions">
+        <button class="primary-btn" id="enableNotificationsBtn" type="button">Allow notifications</button>
+        <button class="secondary-btn" id="skipNotificationsBtn" type="button">Maybe later</button>
+      </div>
     </div>
   </section>
 
@@ -240,6 +246,7 @@
     <div class="story-viewer-shell" id="storyViewerShell">
       <div class="story-timer story-viewer-timer"><div id="proofStoryTimerFill"></div></div>
       <img id="proofStoryPreview" class="proof-story-preview" alt="Proof of life story preview">
+      <button id="storyLikeBtn" class="story-like-btn" type="button" aria-label="Like story"><i class="fas fa-heart"></i></button>
       <div id="proofStoryEmpty" class="story-empty-state">
         <span>No story is live yet.</span>
         <button id="proofEmptyAddBtn" class="story-empty-add" type="button" aria-label="Add story"><i class="fas fa-plus"></i></button>
@@ -266,6 +273,44 @@
     </div>
     <button class="secondary-btn" id="backFromStats" type="button">Back</button>
   </section>
+
+  
+
+  <section class="screen games-screen" id="gamesHub">
+    <p class="eyebrow">Arcade</p>
+    <h1 class="screen-title retro-title">Games Hub</h1>
+    <div class="games-grid">
+      <button class="game-card" id="openSnakeGame" type="button">
+        <i class="fas fa-grip-horizontal"></i>
+        <strong>Snake</strong>
+      </button>
+      <button class="game-card" id="openFlappyGame" type="button">
+        <i class="fas fa-dove"></i>
+        <strong>Flappy</strong>
+      </button>
+    </div>
+    <button class="secondary-btn" id="backFromGamesHub" type="button">Back</button>
+  </section>
+
+  <section class="screen game-screen iframe-game-screen" id="snakeGame">
+      <div class="game-topbar">
+        <button class="secondary-btn" id="backFromSnake" type="button">Back</button>
+      </div>
+      <h1 class="screen-title retro-title">Snake</h1>
+      <div class="embedded-game-shell">
+        <iframe id="snakeFrame" class="embedded-game-frame" src="SnakeGame---JavaScript-main/SnakeGame---JavaScript-main/index.html" title="Snake game"></iframe>
+      </div>
+    </section>
+
+  <section class="screen game-screen iframe-game-screen" id="flappyGame">
+      <div class="game-topbar">
+        <button class="secondary-btn" id="backFromFlappy" type="button">Back</button>
+      </div>
+      <h1 class="screen-title retro-title">Flappy</h1>
+      <div class="embedded-game-shell">
+        <iframe id="flappyFrame" class="embedded-game-frame" src="flappy-bird-master/flappy-bird-master/index.html" title="Flappy Bird game"></iframe>
+      </div>
+    </section>
 
   <section class="screen easter-screen" id="easterEgg">
     <div class="ios-player-shell">
