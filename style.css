@@ -1138,3 +1138,295 @@ body.night-pulse::before {
 .ios-control-main:active {
   transform: none !important;
 }
+
+
+.memory-wall-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.memory-wall-header h2 {
+  margin: 6px 0 4px;
+}
+
+.memory-gallery-open {
+  flex: 0 0 auto;
+  margin-top: 4px;
+}
+
+.memory-swipe-deck {
+  position: relative;
+  margin-top: 16px;
+  min-height: 420px;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(8,12,24,0.9));
+}
+
+.memory-swipe-stage {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  touch-action: pan-y;
+}
+
+.memory-swipe-card,
+.memory-swipe-end {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  border-radius: 28px;
+  overflow: hidden;
+}
+
+.memory-swipe-card.is-animating-left {
+  animation: memorySlideLeft 0.28s ease;
+}
+
+.memory-swipe-card.is-animating-right {
+  animation: memorySlideRight 0.28s ease;
+}
+
+.memory-swipe-media,
+.memory-swipe-card video {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  object-fit: cover;
+  display: block;
+  background: #000;
+}
+
+.memory-swipe-overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 18px;
+  background: linear-gradient(180deg, transparent, rgba(4,8,18,0.9));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.memory-swipe-meta {
+  display: grid;
+  gap: 4px;
+}
+
+.memory-swipe-meta strong {
+  font-size: 1rem;
+}
+
+.memory-swipe-meta span {
+  color: rgba(255,255,255,0.74);
+  font-size: 0.86rem;
+}
+
+.memory-swipe-direction {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.8);
+  font-size: 0.85rem;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(14px);
+}
+
+.memory-swipe-arrows {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.memory-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(5,8,18,0.42);
+  color: rgba(255,255,255,0.86);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(12px);
+}
+
+.memory-swipe-end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 28px;
+  text-align: center;
+  background: radial-gradient(circle at top, rgba(115,82,46,0.42), rgba(12,16,28,0.96));
+}
+
+.memory-swipe-end h3 {
+  font-size: 1.5rem;
+}
+
+.memory-swipe-plus {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background: rgba(255,255,255,0.12);
+  border: 1px dashed rgba(255,255,255,0.28);
+  color: #fff;
+}
+
+.memory-swipe-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.memory-nav-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+}
+
+.memory-gallery-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 94;
+  display: none;
+  padding: calc(20px + env(safe-area-inset-top)) 16px calc(20px + env(safe-area-inset-bottom));
+  background: rgba(2, 6, 14, 0.88);
+  backdrop-filter: blur(18px);
+}
+
+.memory-gallery-sheet.active {
+  display: block;
+}
+
+.memory-gallery-sheet-card {
+  height: 100%;
+  border-radius: 30px;
+  background: rgba(8, 12, 24, 0.94);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 18px;
+  overflow-y: auto;
+}
+
+.memory-gallery-sheet-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.memory-gallery {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.memory-item,
+.memory-add-tile {
+  position: relative;
+}
+
+.memory-item-badge {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: rgba(6, 10, 18, 0.62);
+  color: #fff;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+.memories-tutorial-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 96;
+  display: none;
+}
+
+.memories-tutorial-overlay.active {
+  display: block;
+}
+
+.tutorial-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 14, 0.8);
+}
+
+.tutorial-spotlight {
+  position: absolute;
+  border-radius: 28px;
+  box-shadow: 0 0 0 999px rgba(2, 6, 14, 0.72);
+  border: 1px solid rgba(255,255,255,0.12);
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+
+.tutorial-bubble {
+  position: absolute;
+  max-width: min(320px, calc(100vw - 32px));
+  padding: 18px;
+  border-radius: 24px;
+  background: rgba(10, 15, 29, 0.96);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.34);
+  color: #fff;
+  transition: all 0.25s ease;
+}
+
+.tutorial-bubble::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: rgba(10, 15, 29, 0.96);
+  transform: rotate(45deg);
+  left: 24px;
+  bottom: -8px;
+}
+
+.tutorial-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.tutorial-arrow-copy {
+  color: rgba(255,255,255,0.74);
+  font-size: 0.85rem;
+  margin-top: 8px;
+}
+
+@keyframes memorySlideLeft {
+  from { transform: translateX(18px); opacity: 0.88; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes memorySlideRight {
+  from { transform: translateX(-18px); opacity: 0.88; }
+  to { transform: translateX(0); opacity: 1; }
+}

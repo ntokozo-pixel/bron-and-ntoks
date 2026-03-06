@@ -7,6 +7,11 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>B&N</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/jpeg" href="b and n logo.jpg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="B&N">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -37,14 +42,14 @@
     <div class="event-copy poem-copy">
       <p class="eyebrow">Anniversary poem</p>
       <h1 class="screen-title">For You</h1>
-      <p class="poem-line">Shall I compare thee to a summer’s day?</p>
+      <p class="poem-line">Shall I compare thee to a summerï¿½s day?</p>
       <p class="poem-line">Thou art more lovely and more temperate.</p>
     </div>
   </section>
 
   <section class="screen event-screen" id="secretMeeting">
     <div class="event-copy">
-      <p class="secret-note">MEET ME AT THE SASOL LIBRARY, AT 22:00, ON ANY GIVEN SATURDAY.<br>— your boyfriend</p>
+      <p class="secret-note">MEET ME AT THE SASOL LIBRARY, AT 22:00, ON ANY GIVEN SATURDAY.<br>ï¿½ your boyfriend</p>
       <button class="primary-btn" id="closeSecretMeeting" type="button">Back</button>
     </div>
   </section>
@@ -81,7 +86,7 @@
 
   <section class="screen event-screen" id="nightModeScreen">
     <div class="event-copy">
-      <p class="screen-copy">Why are you awake… thinking about me again?you do know you can text me right?</p>
+      <p class="screen-copy">Why are you awakeï¿½ thinking about me again?you do know you can text me right?</p>
     </div>
   </section>
 
@@ -174,13 +179,24 @@
       <button class="mem-option" id="memoriesBtn" type="button">Memories hub</button>
     </div>
     <div class="memory-grid">
-      <article class="memory-feature">
-        <p class="eyebrow">Photo wall</p>
-        <h2>Our moments together</h2>
-        <p>Add your own pictures and videos.</p>
-        <input id="memoryUpload" class="hidden-input" type="file" accept="image/*,video/*">
-        <div id="memoryGallery" class="memory-gallery"></div>
-      </article>
+        <article class="memory-feature">
+          <div class="memory-wall-header">
+            <div>
+              <p class="eyebrow">Photo wall</p>
+              <h2>Our moments together</h2>
+              <p>Swipe left or right through everything, then add your own pictures and videos at the end.</p>
+            </div>
+            <button id="memoryGalleryOpen" class="secondary-btn memory-gallery-open" type="button">Gallery</button>
+          </div>
+          <input id="memoryUpload" class="hidden-input" type="file" accept="image/*,video/*">
+          <div id="memorySwipeDeck" class="memory-swipe-deck">
+            <div class="memory-swipe-arrows" aria-hidden="true">
+              <span class="memory-arrow memory-arrow-left"><i class="fas fa-arrow-left"></i> swipe</span>
+              <span class="memory-arrow memory-arrow-right">swipe <i class="fas fa-arrow-right"></i></span>
+            </div>
+            <div id="memorySwipeStage" class="memory-swipe-stage"></div>
+          </div>
+        </article>
 
       <article class="note-card">
         <p class="eyebrow">Playlist</p>
@@ -276,9 +292,33 @@
     </div>
   </section>
 
+  <div id="memoryGallerySheet" class="memory-gallery-sheet">
+    <div class="memory-gallery-sheet-card">
+      <div class="memory-gallery-sheet-header">
+        <div>
+          <p class="eyebrow">Gallery</p>
+          <h2>All memories</h2>
+        </div>
+        <button id="closeMemoryGallery" class="memory-viewer-close" type="button" aria-label="Close gallery"><i class="fas fa-xmark"></i></button>
+      </div>
+      <div id="memoryGallery" class="memory-gallery"></div>
+    </div>
+  </div>
   <div id="memoryViewer" class="memory-viewer-overlay">
     <button id="closeMemoryViewer" class="memory-viewer-close" type="button" aria-label="Close memory viewer"><i class="fas fa-xmark"></i></button>
     <div id="memoryViewerContent" class="memory-viewer-content"></div>
+  </div>
+  <div id="memoriesTutorial" class="memories-tutorial-overlay">
+    <div class="tutorial-backdrop"></div>
+    <div class="tutorial-spotlight" id="tutorialSpotlight"></div>
+    <div class="tutorial-bubble" id="tutorialBubble">
+      <p class="eyebrow" id="tutorialStepLabel">Quick tour</p>
+      <p id="tutorialStepText">This is your relationship space.</p>
+      <div class="tutorial-actions">
+        <button id="tutorialSkip" class="secondary-btn" type="button">Skip</button>
+        <button id="tutorialNext" class="primary-btn" type="button">Next</button>
+      </div>
+    </div>
   </div>
   <div id="shakeSosOverlay" class="shake-sos-overlay">
     <div class="shake-sos-card">
