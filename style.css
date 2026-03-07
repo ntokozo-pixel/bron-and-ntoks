@@ -1578,6 +1578,8 @@ body.night-pulse::before {
 .location-pin-dot { width: 12px; height: 12px; border-radius: 999px; background: rgba(255,96,96,0.98); box-shadow: 0 0 0 6px rgba(255,96,96,0.12); position: relative; z-index: 1; }
 .location-pin-pulse { position: absolute; left: -6px; top: -6px; width: 24px; height: 24px; border-radius: 999px; background: rgba(255,96,96,0.18); animation: locationPulse 1.8s ease-out infinite; }
 .location-map-frame { width: 100%; min-height: 220px; border: 0; border-radius: 20px; background: rgba(14,20,31,0.85); }
+.location-open-map { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; margin-top: 2px; }
+.location-open-map[aria-disabled="true"] { opacity: 0.5; pointer-events: none; }
 @keyframes locationPulse { 0% { transform: scale(0.55); opacity: 0.95; } 100% { transform: scale(1.95); opacity: 0; } }
 @media (max-width: 560px) { .location-map-frame { min-height: 200px; } }
 
