@@ -48,7 +48,7 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: linear-gradient(180deg, rgba(255,255,255,0.04), transparent 18%, transparent 82%, rgba(255,255,255,0.03));
+  background: linear-gradient(180deg, var(--glass-overlay-top), transparent 18%, transparent 82%, var(--glass-overlay-bottom));
   pointer-events: none;
 }
 
@@ -61,7 +61,7 @@ body::before {
   max-width: 420px;
   max-height: 420px;
   transform: translateX(-50%);
-  background: radial-gradient(circle, rgba(110, 199, 255, 0.16), transparent 70%);
+  background: radial-gradient(circle, var(--ambient-glow), transparent 70%);
   filter: blur(16px);
   pointer-events: none;
 }
@@ -151,12 +151,12 @@ button:active { transform: scale(0.98); }
   color: white;
   box-shadow: 0 16px 34px rgba(47,141,255,0.24);
 }
-.answer-btn.is-secondary, .secondary-btn { background: rgba(255,255,255,0.08); color: var(--text); }
-.answer-btn.is-tertiary, .ghost-btn, .text-btn { background: rgba(255,255,255,0.04); color: var(--muted); }
+.answer-btn.is-secondary, .secondary-btn { background: var(--button-secondary); color: var(--text); }
+.answer-btn.is-tertiary, .ghost-btn, .text-btn { background: var(--button-ghost); color: var(--muted); }
 .answer-btn { width: 100%; padding: 16px; text-align: left; font-size: 1rem; font-weight: 700; line-height: 1.4; }
-.answer-btn.is-selected { background: linear-gradient(135deg, #5f9cff, #8bcbff); color: #ffffff; box-shadow: 0 18px 34px rgba(95,156,255,0.34); }
-.answer-btn.is-selected.is-secondary { background: linear-gradient(135deg, #6f7cff, #53b7ff); }
-.answer-btn.is-selected.is-tertiary { background: linear-gradient(135deg, #ff7ca8, #ffb36a); }
+.answer-btn.is-selected { background: linear-gradient(135deg, var(--selected-primary-a), var(--selected-primary-b)); color: #ffffff; box-shadow: 0 18px 34px rgba(0,0,0,0.24); }
+.answer-btn.is-selected.is-secondary { background: linear-gradient(135deg, var(--selected-secondary-a), var(--selected-secondary-b)); }
+.answer-btn.is-selected.is-tertiary { background: linear-gradient(135deg, var(--selected-tertiary-a), var(--selected-tertiary-b)); }
 .primary-btn, .secondary-btn, .ghost-btn, .menu-btn { padding: 14px 18px; }
 .text-btn { padding: 8px 0; align-self: center; }
 
@@ -1570,3 +1570,44 @@ body.night-pulse::before {
 .game-screen .game-scoreboard {
   display: none !important;
 }
+
+.location-card { display: grid; gap: 14px; }
+.location-map-shell { display: grid; gap: 10px; padding: 14px; border-radius: 22px; background: rgba(255,255,255,0.04); }
+.location-map-topline { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.location-here-badge { display: inline-flex; align-items: center; gap: 10px; position: relative; color: var(--text); }
+.location-pin-dot { width: 12px; height: 12px; border-radius: 999px; background: rgba(255,96,96,0.98); box-shadow: 0 0 0 6px rgba(255,96,96,0.12); position: relative; z-index: 1; }
+.location-pin-pulse { position: absolute; left: -6px; top: -6px; width: 24px; height: 24px; border-radius: 999px; background: rgba(255,96,96,0.18); animation: locationPulse 1.8s ease-out infinite; }
+.location-map-frame { width: 100%; min-height: 220px; border: 0; border-radius: 20px; background: rgba(14,20,31,0.85); }
+@keyframes locationPulse { 0% { transform: scale(0.55); opacity: 0.95; } 100% { transform: scale(1.95); opacity: 0; } }
+@media (max-width: 560px) { .location-map-frame { min-height: 200px; } }
+
+.profile-hero { align-items: center; text-align: center; }
+.profile-hero-copy { display: grid; gap: 6px; }
+.profile-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.profile-tag { padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,0.06); color: var(--muted); font-size: 0.82rem; }
+.profile-section { text-align: left; }
+.profile-section-head { display: grid; gap: 4px; }
+.profile-quick-stats { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+.profile-mini-stat { padding: 14px; border-radius: 18px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); display: grid; gap: 6px; }
+.profile-mini-stat span { color: var(--muted); font-size: 0.82rem; }
+.profile-mini-stat strong { font-size: 1.12rem; }
+.profile-detail-list { display: grid; gap: 10px; }
+.profile-detail-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.profile-detail-row:last-child { border-bottom: 0; padding-bottom: 0; }
+.profile-detail-row span { color: var(--muted); }
+.profile-actions { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
+.profile-footnote { text-align: center; }
+@media (max-width: 560px) { .profile-actions { grid-template-columns: 1fr; } }
+
+.profile-link-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px 0; color: var(--text); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.profile-link-row:last-child { border-bottom: 0; }
+.complaints-card { text-align: left; }
+.complaint-input { min-height: 150px; width: 100%; resize: vertical; padding: 14px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: var(--text); font: inherit; }
+.complaint-input::placeholder { color: rgba(165,180,207,0.75); }
+
+.motivation-card { display: grid; gap: 14px; padding: 22px; border-radius: 28px; background: linear-gradient(145deg, var(--motivation-a), var(--motivation-b)); color: #fff7f3; box-shadow: 0 24px 50px rgba(0,0,0,0.22); border: 1px solid rgba(255,255,255,0.14); position: relative; overflow: hidden; }
+.motivation-card::before { content: ""; position: absolute; inset: auto -10% -30% auto; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.26), transparent 68%); pointer-events: none; }
+.motivation-eyebrow { color: rgba(255,255,255,0.82); }
+.motivation-title { font-family: "Dropline", "SF Pro Display", sans-serif; font-size: clamp(1.9rem, 7vw, 2.8rem); line-height: 0.98; max-width: 9ch; }
+.motivation-quote { font-size: clamp(1.2rem, 4.8vw, 1.6rem); line-height: 1.4; font-weight: 800; letter-spacing: 0.01em; color: #fffdf9; position: relative; z-index: 1; }
+.motivation-author { color: rgba(255,255,255,0.84); font-weight: 700; font-size: 0.98rem; position: relative; z-index: 1; }

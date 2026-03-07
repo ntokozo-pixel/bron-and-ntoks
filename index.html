@@ -178,6 +178,7 @@
       <button class="mem-option" id="statsBtn" type="button">Stats</button>
       <button class="mem-option" id="gamesHubBtn" type="button">Mini games</button>
       <button class="mem-option" id="memoriesBtn" type="button">Memories hub</button>
+      <button class="mem-option" id="complaintsBtn" type="button">Complaints</button>
     </div>
     <div class="memory-grid">
         <article class="memory-feature">
@@ -215,6 +216,30 @@
         </form>
         <div id="customPlaylistList" class="custom-playlists"></div>
       </article>
+
+      <article class="note-card location-card" id="boyfriendLocationCard">
+        <p class="eyebrow">Location</p>
+        <h2 id="boyfriendLocationTitle">Where is your boyfriend</h2>
+        <div class="location-map-shell">
+          <div class="location-map-topline">
+            <div class="location-here-badge">
+              <span class="location-pin-pulse"></span>
+              <span class="location-pin-dot"></span>
+              <strong>Here</strong>
+            </div>
+            <span id="locationUpdated" class="history-meta">Waiting for a live location.</span>
+          </div>
+          <iframe id="boyfriendMap" class="location-map-frame" title="Where is your boyfriend" loading="lazy"></iframe>
+          <p id="locationStatus" class="history-meta">No live location yet.</p>
+        </div>
+      </article>
+
+      <article class="motivation-card" id="dailyMotivationCard">
+        <p class="eyebrow motivation-eyebrow">Daily motivation</p>
+        <h2 class="motivation-title">For Bronwyn</h2>
+        <blockquote class="motivation-quote" id="motivationQuote"></blockquote>
+        <p class="motivation-author" id="motivationAuthor"></p>
+      </article>
     </div>
   </section>
 
@@ -232,14 +257,75 @@
 
   <section class="screen" id="profile">
     <p class="eyebrow">User profile</p>
-    <h1 class="screen-title">Bronwyn</h1>
-    <div class="profile-card">
+    <div class="profile-hero profile-card">
       <div class="profile-avatar-lg"><i class="fas fa-user"></i></div>
-      <p class="screen-copy">Quick safety shortcuts live here.</p>
-      <a class="primary-btn sos-link" href="tel:0608793239" id="callNtokozoBtn">SOS call Ntokozo</a>
-      <p class="history-meta">If the phone shakes while the app is open, a large SOS call button will appear.</p>
+      <div class="profile-hero-copy">
+        <h1 class="screen-title">Bronwyn</h1>
+        <p class="screen-copy" id="profileSubtitle">Your little relationship dashboard.</p>
+      </div>
+      <div class="profile-tags">
+        <span class="profile-tag">B&N</span>
+        <span class="profile-tag" id="profileNotificationTag">Notifications off</span>
+        <span class="profile-tag" id="profileStoryTag">0 live stories</span>
+      </div>
     </div>
+
+    <div class="profile-section profile-card">
+      <div class="profile-section-head">
+        <h2>Quick stats</h2>
+        <p class="history-meta">A small snapshot of your app life.</p>
+      </div>
+      <div class="profile-quick-stats" id="profileQuickStats"></div>
+    </div>
+
+    <div class="profile-section profile-card">
+      <div class="profile-section-head">
+        <h2>Profile details</h2>
+        
+      </div>
+      <div class="profile-detail-list" id="profileDetailList"></div>
+    </div>
+
+    <div class="profile-section profile-card">
+      <div class="profile-section-head">
+        <h2>App preferences</h2>
+        <p class="history-meta">What this profile is using right now.</p>
+      </div>
+      <div class="profile-detail-list" id="profilePreferenceList"></div>
+    </div>
+
+    <div class="profile-section profile-card">
+      <div class="profile-section-head">
+        <h2>Ntokozo</h2>
+      </div>
+      <div class="profile-detail-list">
+        <a class="profile-link-row" id="openNtokozoWhatsApp" href="https://wa.me/27608793239?text=Hi%20Ntokozo" target="_blank" rel="noreferrer"><span>WhatsApp Ntokozo</span><strong>Open chat</strong></a>
+      </div>
+    </div>
+
+    <div class="profile-actions">
+      <button class="secondary-btn" id="profileOpenStats" type="button">Open stats</button>
+      <button class="secondary-btn" id="profileOpenHistory" type="button">Open history</button>
+      <a class="secondary-btn sos-link" href="tel:0608793239" id="callNtokozoBtn">Call Ntokozo</a>
+    </div>
+
+    <p class="history-meta profile-footnote">If the phone shakes while the app is open, a large SOS call button will still appear.</p>
     <button class="secondary-btn" id="backFromProfile" type="button">Back</button>
+  </section>
+
+
+  <section class="screen" id="complaints">
+    <p class="eyebrow">Complaints</p>
+    <h1 class="screen-title">Complain here</h1>
+    <p class="screen-copy">If something in the relationship or the app is annoying you, send it here.</p>
+    <div class="profile-card complaints-card">
+      <textarea id="complaintText" class="complaint-input" placeholder="Type your complaint here..." maxlength="500"></textarea>
+      <div class="profile-actions">
+        <button class="primary-btn" id="sendComplaintBtn" type="button">Send on WhatsApp</button>
+        <button class="secondary-btn" id="copyComplaintBtn" type="button">Copy text</button>
+      </div>
+    </div>
+    <button class="secondary-btn" id="backFromComplaints" type="button">Back</button>
   </section>
 
   <section class="screen story-viewer-screen" id="proofLife">
