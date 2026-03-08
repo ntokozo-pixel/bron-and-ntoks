@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>B&N</title>
 <link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/jpeg" href="b and n logo.jpg">
+<link id="appFavicon" rel="icon" type="image/jpeg" href="b and n logo.jpg">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-title" content="B&N">
@@ -23,6 +23,9 @@
   <div class="progress-bar" id="questionProgressBar" aria-hidden="true">
     <div id="progress"></div>
   </div>
+  <button id="globalBackBtn" class="global-back-btn" type="button" aria-label="Go back">
+    <i class="fas fa-chevron-left"></i>
+  </button>
 
   <section class="screen intro-screen" id="intro">
     <div class="story-timer"><div id="storyTimerFill"></div></div>
@@ -42,14 +45,14 @@
     <div class="event-copy poem-copy">
       <p class="eyebrow">Anniversary poem</p>
       <h1 class="screen-title">For You</h1>
-      <p class="poem-line">Shall I compare thee to a summer�s day?</p>
+      <p class="poem-line">Shall I compare thee to a summer's day?</p>
       <p class="poem-line">Thou art more lovely and more temperate.</p>
     </div>
   </section>
 
   <section class="screen event-screen" id="secretMeeting">
     <div class="event-copy">
-      <p class="secret-note">MEET ME AT THE SASOL LIBRARY, AT 22:00, ON ANY GIVEN SATURDAY.<br>� your boyfriend</p>
+      <p class="secret-note">MEET ME AT THE SASOL LIBRARY, AT 22:00, ON ANY GIVEN SATURDAY.<br>-- your boyfriend</p>
       <button class="primary-btn" id="closeSecretMeeting" type="button">Back</button>
     </div>
   </section>
@@ -78,15 +81,30 @@
   </section>
 
   <section class="screen event-screen secret-access-screen" id="secretTapScreen">
-    <div class="event-copy">
-      <p class="screen-copy">Unauthorized access detected. Identity confirmed: My girlfriend. Access granted.</p>
-      <button class="primary-btn" id="closeSecretTapScreen" type="button">Continue</button>
+    <div class="event-copy secret-wheel-copy">
+      <p class="eyebrow">Logo easter egg</p>
+      <h1 class="screen-title">Spin for us</h1>
+      <p class="screen-copy">A little hidden wheel with soft date ideas, anniversary ideas, and couple things just for you.</p>
+      <div class="secret-wheel-shell">
+        <div class="secret-wheel-pointer" aria-hidden="true"></div>
+        <div id="secretSpinWheel" class="secret-spin-wheel">
+          <div class="secret-spin-wheel-center">B&amp;N</div>
+        </div>
+      </div>
+      <div class="prompt-actions">
+        <button class="primary-btn" id="spinSecretWheel" type="button">Spin the wheel</button>
+        <button class="secondary-btn" id="closeSecretTapScreen" type="button">Close</button>
+      </div>
+      <div id="secretWheelResult" class="secret-wheel-result">
+        <strong>Hidden reward ready</strong>
+        <p>Tap spin and let the wheel pick something cute for you two.</p>
+      </div>
     </div>
   </section>
 
   <section class="screen event-screen" id="nightModeScreen">
     <div class="event-copy">
-      <p class="screen-copy">Why are you awake� thinking about me again?you do know you can text me right?</p>
+      <p class="screen-copy">Why are you awake... thinking about me again? you do know you can text me right?</p>
     </div>
   </section>
 
@@ -104,7 +122,7 @@
       <button class="primary-btn" id="closeEggHint" type="button">Continue</button>
     </div>
   </section>
-  <section class="screen" id="app">
+  <section class="screen tab-root" id="app">
     <div class="topbar">
       <div>
         <p class="eyebrow" id="dayLabel">Day 1 of 30</p>
@@ -133,7 +151,7 @@
     <div class="loader" aria-hidden="true"></div>
   </section>
 
-  <section class="screen" id="result">
+  <section class="screen tab-root" id="result">
     <p class="eyebrow">Today's result</p>
     <h1 class="screen-title">score</h1>
     <div class="score-ring"><span id="vibeScore">0%</span></div>
@@ -143,20 +161,19 @@
     <button id="finalYes" class="primary-btn" type="button">Continue</button>
   </section>
 
-  <section class="screen" id="extraContent">
+  <section class="screen tab-root" id="extraContent">
     <div class="hub-header">
       <div>
-        <p class="eyebrow">Relationship space</p>
-        <h1 class="screen-title">Memories</h1>
+        <p class="eyebrow">Moments</p>
+        <h1 class="screen-title">Our space</h1>
       </div>
       <div class="hub-actions">
         <button id="profileBtn" class="menu-btn icon-btn" type="button" aria-label="Open profile"><i class="fas fa-user"></i></button>
-        <button id="memOptionsBtn" class="menu-btn" type="button" aria-label="Open menu">Menu</button>
       </div>
     </div>
     <div class="memories-top-row">
       <button id="logoBadge" class="logo-badge logo-card" type="button" aria-label="App logo">
-        <img src="b and n logo.jpg" alt="B and N logo" class="logo-image">
+        <img id="mainLogoImage" src="b and n logo.jpg" alt="B and N logo" class="logo-image">
       </button>
 
       <div class="stories-strip">
@@ -170,17 +187,7 @@
         </button>
       </div>
     </div>
-
-    <div id="memOverlay"></div>
-    <div id="memOptionsPanel" class="mem-panel">
-      <p class="eyebrow">Quick menu</p>
-      <button class="mem-option" id="vibeHistoryBtn" type="button">Score history</button>
-      <button class="mem-option" id="statsBtn" type="button">Stats</button>
-      <button class="mem-option" id="gamesHubBtn" type="button">Mini games</button>
-      <button class="mem-option" id="memoriesBtn" type="button">Memories hub</button>
-      <button class="mem-option" id="complaintsBtn" type="button">Complaints</button>
-    </div>
-    <div class="memory-grid">
+<div class="memory-grid">
         <article class="memory-feature">
           <div class="memory-wall-header">
             <div>
@@ -235,12 +242,179 @@
         </div>
       </article>
 
-      <article class="motivation-card" id="dailyMotivationCard">
+            <article class="motivation-card" id="dailyMotivationCard">
         <p class="eyebrow motivation-eyebrow">Daily motivation</p>
         <h2 class="motivation-title">For Bronwyn</h2>
         <blockquote class="motivation-quote" id="motivationQuote"></blockquote>
         <p class="motivation-author" id="motivationAuthor"></p>
       </article>
+    </div>
+  </section>
+
+
+
+  <section class="screen" id="bronwynSpace">
+    <p class="eyebrow">Bronwyn space</p>
+    <h1 class="screen-title">Your corner</h1>
+    <p class="screen-copy">This part listens to you first. Save your mood, your note, and your own little updates here.</p>
+    <div class="profile-card bronwyn-space-card">
+      <p class="history-meta">Mood tracker</p>
+      <div id="moodSelector" class="mood-chip-row"></div>
+      <div id="moodResponseCard" class="response-card"></div>
+      <textarea id="bronwynNote" class="complaint-input" placeholder="Write what today feels like, what you need, or what made you smile..." maxlength="320"></textarea>
+      <button class="primary-btn" id="saveBronwynSpace" type="button">Save your space</button>
+    </div>
+  </section>
+
+  <section class="screen" id="voiceNotes">
+    <p class="eyebrow">Voice notes</p>
+    <h1 class="screen-title">Hear us later</h1>
+    <p class="screen-copy" id="voiceRecorderStatus">Record short voice notes for little messages, jokes, or soft updates.</p>
+    <div class="profile-card voice-recorder-card">
+      <div class="voice-recorder-actions">
+        <button class="primary-btn" id="startVoiceNote" type="button">Record</button>
+        <button class="secondary-btn" id="stopVoiceNote" type="button">Stop</button>
+      </div>
+      <div id="voiceNotesList" class="voice-notes-list"></div>
+    </div>
+  </section>
+
+  <section class="screen" id="countdowns">
+    <p class="eyebrow">Countdowns</p>
+    <h1 class="screen-title">Next important thing</h1>
+    <p class="screen-copy">Edit the next date, anniversary, and the next time you see each other. Everything here is editable.</p>
+    <div id="countdownEditorList" class="countdown-editor-list"></div>
+  </section>
+
+  <section class="screen" id="relationshipCalendar">
+    <p class="eyebrow">Relationship calendar</p>
+    <h1 class="screen-title">Dates and plans</h1>
+    <p class="screen-copy">Add future plans, anniversaries, and little moments worth remembering.</p>
+    <div class="profile-card calendar-form-card">
+      <input id="calendarTitle" type="text" placeholder="Event title">
+      <input id="calendarDate" type="datetime-local">
+      <input id="calendarType" type="text" placeholder="Type: date, plan, anniversary, reminder">
+      <textarea id="calendarNotes" class="complaint-input" placeholder="Small note or plan details" maxlength="240"></textarea>
+      <div class="profile-actions">
+        <button class="primary-btn" id="saveCalendarEvent" type="button">Save event</button>
+        <button class="secondary-btn" id="clearCalendarEvent" type="button">Clear form</button>
+      </div>
+    </div>
+    <div id="calendarEventsList" class="calendar-events-list"></div>
+  </section>
+
+  <section class="screen" id="coupleQuiz">
+    <p class="eyebrow">Couple quiz</p>
+    <h1 class="screen-title">Couple questions for us</h1>
+    <p class="screen-copy">Built-in conversation starters, split into five categories, plus your own custom question pack underneath.</p>
+    <div class="quiz-concepts-grid">
+      <article class="profile-card"><h2>Memory lane</h2><p class="history-meta">Questions about moments, firsts, and inside jokes.</p></article>
+      <article class="profile-card"><h2>Know me better</h2><p class="history-meta">Simple multiple-choice questions about habits, favorites, and feelings.</p></article>
+      <article class="profile-card"><h2>Us choices</h2><p class="history-meta">Would-you-rather and future plan questions about the relationship.</p></article>
+    </div>
+    <div class="profile-card quiz-builder-card">
+      <input id="quizPrompt" type="text" placeholder="Quiz question prompt">
+      <input id="quizOptionOne" type="text" placeholder="Option one">
+      <input id="quizOptionTwo" type="text" placeholder="Option two">
+      <input id="quizOptionThree" type="text" placeholder="Option three">
+      <select id="quizAnswerIndex">
+        <option value="0">Correct / intended answer: option one</option>
+        <option value="1">Correct / intended answer: option two</option>
+        <option value="2">Correct / intended answer: option three</option>
+      </select>
+      <div class="profile-actions">
+        <button class="primary-btn" id="saveQuizQuestion" type="button">Save question</button>
+        <button class="secondary-btn" id="clearQuizQuestion" type="button">Clear</button>
+      </div>
+    </div>
+    <div id="quizQuestionList" class="quiz-question-list"></div>
+  </section>
+
+  <section class="screen" id="rewards">
+    <p class="eyebrow">Tiny rewards</p>
+    <h1 class="screen-title">Unlocked slowly</h1>
+    <p class="screen-copy">Little relationship rewards that open up as you use the app together.</p>
+    <div id="rewardsList" class="rewards-list"></div>
+  </section>
+
+  <section class="screen tab-root" id="createHub">
+    <p class="eyebrow">Create</p>
+    <h1 class="screen-title">Add something new</h1>
+    <p class="screen-copy">A cleaner create space for memories, voice notes, and plans.</p>
+    <div class="simple-category-grid">
+      <button class="simple-category-card create-action" id="createMemory" type="button">
+        <i class="fas fa-image"></i>
+        <strong>Add memory</strong>
+        <span>Save a photo or video together</span>
+      </button>
+      <button class="simple-category-card create-action" id="createVoiceNote" type="button">
+        <i class="fas fa-microphone"></i>
+        <strong>Voice note</strong>
+        <span>Record something soft or funny</span>
+      </button>
+      <button class="simple-category-card create-action" id="createCalendarEvent" type="button">
+        <i class="fas fa-calendar-plus"></i>
+        <strong>Add plan</strong>
+        <span>Put a date, event, or reminder on the calendar</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="screen tab-root" id="usHub">
+    <p class="eyebrow">Us</p>
+    <h1 class="screen-title">Relationship hub</h1>
+    <p class="screen-copy">The app becomes simpler if everything important sits behind a few clean categories.</p>
+    <div class="simple-category-grid">
+      <button class="simple-category-card" id="goBronwynSpace" type="button">
+        <i class="fas fa-heart"></i>
+        <strong>Bronwyn space</strong>
+        <span>Mood tracker, note, and how the app responds to her</span>
+      </button>
+      <button class="simple-category-card" id="goCountdowns" type="button">
+        <i class="fas fa-hourglass-half"></i>
+        <strong>Countdowns</strong>
+        <span>Next date, anniversary, and next time together</span>
+      </button>
+      <button class="simple-category-card" id="goCalendar" type="button">
+        <i class="fas fa-calendar-days"></i>
+        <strong>Calendar</strong>
+        <span>Edit future plans and relationship events</span>
+      </button>
+      <button class="simple-category-card" id="goCoupleQuiz" type="button">
+        <i class="fas fa-comments"></i>
+        <strong>Couple quiz</strong>
+        <span>Keep the concept ready and add questions later</span>
+      </button>
+      <button class="simple-category-card" id="goRewards" type="button">
+        <i class="fas fa-gift"></i>
+        <strong>Tiny rewards</strong>
+        <span>Slow unlocks and little relationship milestones</span>
+      </button>
+      <button class="simple-category-card" id="goVoiceNotes" type="button">
+        <i class="fas fa-wave-square"></i>
+        <strong>Voice notes</strong>
+        <span>Saved messages, jokes, and comfort notes</span>
+      </button>
+      <button class="simple-category-card" id="goGamesHub" type="button">
+        <i class="fas fa-gamepad"></i>
+        <strong>Mini games</strong>
+        <span>Snake and Flappy in one place</span>
+      </button>
+      <button class="simple-category-card" id="goHistory" type="button">
+        <i class="fas fa-clock-rotate-left"></i>
+        <strong>Score history</strong>
+        <span>Past vibe scores and how the days have felt</span>
+      </button>
+      <button class="simple-category-card" id="goStats" type="button">
+        <i class="fas fa-chart-simple"></i>
+        <strong>Stats</strong>
+        <span>Usage, check-ins, and app patterns</span>
+      </button>
+      <button class="simple-category-card" id="goComplaints" type="button">
+        <i class="fas fa-triangle-exclamation"></i>
+        <strong>Complaints</strong>
+        <span>Relationship complaints or app complaints</span>
+      </button>
     </div>
   </section>
 
@@ -256,7 +430,7 @@
     </div>
   </section>
 
-  <section class="screen" id="profile">
+  <section class="screen tab-root" id="profile">
     <p class="eyebrow">User profile</p>
     <div class="profile-hero profile-card">
       <div class="profile-avatar-lg"><i class="fas fa-user"></i></div>
@@ -311,7 +485,7 @@
     </div>
 
     <p class="history-meta profile-footnote">If the phone shakes while the app is open, a large SOS call button will still appear.</p>
-    <button class="secondary-btn" id="backFromProfile" type="button">Back</button>
+    
   </section>
 
 
@@ -339,7 +513,7 @@
         <button id="proofEmptyAddBtn" class="story-empty-add" type="button" aria-label="Add story"><i class="fas fa-plus"></i></button>
       </div>
     </div>
-    <input id="proofUpload" class="hidden-input" type="file" accept="image/*" capture="user">
+    <input id="proofUpload" class="hidden-input" type="file" accept="image/*">
   </section>
 
   <section class="screen" id="history">
@@ -404,7 +578,7 @@
       <button id="easterContinue" class="ios-player-back" type="button" aria-label="Back to memories"><i class="fas fa-chevron-left"></i></button>
       <div class="ios-player-card">
         <p class="eyebrow">Now Playing</p>
-        <img src="b and n logo.jpg" alt="Album cover" class="ios-album-art">
+        <img id="secretAlbumArt" src="b and n logo.jpg" alt="Album cover" class="ios-album-art">
         <div class="ios-song-meta">
           <h2>Valentine</h2>
           <p>Ntokozo</p>
@@ -460,6 +634,28 @@
       <button class="secondary-btn" id="closeShakeSos" type="button">Close</button>
     </div>
   </div>
+  <nav id="bottomNav" class="bottom-nav" aria-label="Main navigation">
+    <button class="bottom-nav-item" data-tab="home" data-target="extraContent" type="button">
+      <i class="fas fa-house"></i>
+      <span>Home</span>
+    </button>
+    <button class="bottom-nav-item" data-tab="questions" data-target="app" type="button">
+      <i class="fas fa-comment-dots"></i>
+      <span>Questions</span>
+    </button>
+    <button class="bottom-nav-item bottom-nav-create" data-tab="create" data-target="createHub" type="button" aria-label="Create">
+      <i class="fas fa-plus"></i>
+      <span>Create</span>
+    </button>
+    <button class="bottom-nav-item" data-tab="us" data-target="usHub" type="button">
+      <i class="fas fa-heart-circle-check"></i>
+      <span>Us</span>
+    </button>
+    <button class="bottom-nav-item" data-tab="profile" data-target="profile" type="button">
+      <i class="fas fa-user"></i>
+      <span>Profile</span>
+    </button>
+  </nav>
 </div>
 
 <script src="script.js"></script>

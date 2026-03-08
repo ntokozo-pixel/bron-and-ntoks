@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Gilroy";
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#card {
+  height: 670px;
+  width: 400px;
+  background-color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 3px solid #dadada;
+  position: relative;
+}
+
+#storiyan {
+  height: 100px;
+  width: 100%;
+  border-bottom: 1px solid #dadada;
+  padding: 15px;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* scrolbar hiddin */
+#storiyan::-webkit-scrollbar {
+  display: none;
+}
+
+.story {
+  background: linear-gradient(
+    rgb(255, 0, 0),
+    rgb(255, 127, 0),
+    rgb(255, 255, 0),
+    rgb(239, 134, 41),
+    rgb(203, 60, 228)
+  );
+  padding: 2px;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+  margin-right: 12px;
+}
+
+.story img {
+  border: 2px solid white;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
+
+#full-screen {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  display: none;
+}
